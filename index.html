@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTI 人格测试</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 开始页面 -->
+        <div id="start-page" class="page active">
+            <div class="header">
+                <h1>🎭 MBTI 人格测试</h1>
+                <p class="subtitle">探索你的性格类型</p>
+            </div>
+            <div class="intro">
+                <p>本测试通过一系列问题，帮助你了解自己的MBTI人格类型。</p>
+                <p class="info">共 12 道题，大约需要 3-5 分钟</p>
+            </div>
+            <button class="btn-primary" onclick="startTest()">开始测试</button>
+        </div>
+
+        <!-- 问题页面 -->
+        <div id="quiz-page" class="page">
+            <div class="progress-bar">
+                <div id="progress" class="progress-fill"></div>
+            </div>
+            <div class="question-number">问题 <span id="current-q">1</span> / <span id="total-q">12</span></div>
+            <div id="question-box">
+                <h2 id="question-text" class="question-text"></h2>
+                <div id="options" class="options"></div>
+            </div>
+        </div>
+
+        <!-- 结果页面 -->
+        <div id="result-page" class="page">
+            <div class="result-container">
+                <h1 class="result-title">你的 MBTI 类型是</h1>
+                <div id="mbti-type" class="mbti-type"></div>
+                <div id="mbti-name" class="mbti-name"></div>
+                <div id="mbti-desc" class="mbti-desc"></div>
+
+                <div class="dimensions">
+                    <h3>维度分析</h3>
+                    <div id="dimensions" class="dimension-list"></div>
+                </div>
+
+                <div class="actions">
+                    <button class="btn-secondary" onclick="restartTest()">重新测试</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="mbti.js"></script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    width: 100%;
+    padding: 40px;
+    min-height: 500px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* 开始页面 */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 2.5em;
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    color: #666;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    color: #555;
+}
+
+.info {
+    background: #f0f4ff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    color: #667eea;
+    font-weight: 500;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* 问题页面 */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.question-number {
+    text-align: center;
+    color: #999;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+
+.question-text {
+    font-size: 1.4em;
+    color: #333;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.option {
+    padding: 20px;
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 1.05em;
+    color: #495057;
+}
+
+.option:hover {
+    background: #e9ecef;
+    border-color: #667eea;
+    transform: translateX(5px);
+}
+
+.option:active {
+    transform: translateX(3px);
+}
+
+/* 结果页面 */
+.result-container {
+    text-align: center;
+}
+
+.result-title {
+    font-size: 2em;
+    color: #667eea;
+    margin-bottom: 20px;
+}
+
+.mbti-type {
+    font-size: 4em;
+    font-weight: bold;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.mbti-name {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.mbti-desc {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.dimensions {
+    margin-top: 30px;
+}
+
+.dimensions h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+}
+
+.dimension-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.dimension {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.dimension-label {
+    font-weight: 600;
+    color: #333;
+}
+
+.dimension-bar {
+    flex: 1;
+    margin: 0 15px;
+    height: 10px;
+    background: #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.dimension-fill {
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.5s ease;
+}
+
+.dimension-value {
+    font-weight: 600;
+    color: #667eea;
+    min-width: 50px;
+    text-align: right;
+}
+
+.actions {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+.btn-secondary {
+    flex: 1;
+    padding: 15px;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* 响应式 */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .mbti-type {
+        font-size: 3em;
+    }
+
+    .question-text {
+        font-size: 1.2em;
+    }
+}
