@@ -145,7 +145,7 @@ const simpleQuestions = [
     { text: "你更喜欢...", options: ["明确的目标", "开放的可能性"], dimension: "JP" }
 ];
 
-// MBTI 类型描述
+// MBTI 类型描述（简版）
 const mbtiTypes = {
     "ISTJ": { name: "物流师", desc: "安静、严肃，通过全面性和可靠性获得成功。实际，实事求是，现实，负责任。决定做什么事情，然后坚定不移地完成，不被干扰。喜欢将工作、家庭和生活的一切安排得井井有条。" },
     "ISFJ": { name: "守卫者", desc: "安静、友好、负责任、认真。始终如一、稳重。致力于履行义务。虽然待人周到、体贴，但通常不怎么表现出来。" },
@@ -183,6 +183,65 @@ let currentQuestion = 0;
 let questions = [];
 let scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
 let currentVersion = '';
+
+// 初始化：检查URL参数
+window.onload = function() {
+    const hash = window.location.hash;
+    if (hash && hash.startsWith('#report=')) {
+        const mbtiType = hash.substring(8).toUpperCase();
+        showDetailedReport(mbtiType);
+    }
+};
+
+// 显示详细报告
+function showDetailedReport(mbtiType) {
+    if (!detailedReports[mbtiType]) {
+        alert('未找到该类型的报告');
+        return;
+    }
+
+    const report = detailedReports[mbtiType];
+
+    // 隐藏所有页面
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+
+    // 显示详细报告页
+    document.getElementById('detailed-report-page').classList.add('active');
+
+    // 填充内容
+    document.getElementById('report-type-title').textContent = mbtiType;
+    document.getElementById('report-type-name').textContent = report.name;
+
+    document.getElementById('report-overview').textContent = report.overview;
+    document.getElementById('report-traits').textContent = report.traits;
+
+    // 优势列表
+    const strengthsDiv = document.getElementById('report-strengths');
+    strengthsDiv.innerHTML = report.strengths.split('\n').map(item => {
+        if (item.trim()) {
+            return `<div class="report-list-item"><span class="report-list-icon">✅</span><span>${item.replace(/^\d+\.\s*/, '')}</span></div>`;
+        }
+        return '';
+    }).join('');
+
+    // 弱点列表
+    const weaknessesDiv = document.getElementById('report-weaknesses');
+    weaknessesDiv.innerHTML = report.weaknesses.split('\n').map(item => {
+        if (item.trim()) {
+            return `<div class="report-list-item"><span class="report-list-icon">⚠️</span><span>${item.replace(/^\d+\.\s*/, '')}</span></div>`;
+        }
+        return '';
+    }).join('');
+
+    document.getElementById('report-career').innerHTML = report.career.replace(/\n\n/g, '<br><br>');
+    document.getElementById('report-relationships').textContent = report.relationships;
+    document.getElementById('report-teamwork').textContent = report.teamwork;
+    document.getElementById('report-stress').textContent = report.stress;
+    document.getElementById('report-growth').textContent = report.growth;
+
+    // 滚动到顶部
+    window.scrollTo(0, 0);
+}
 
 // 开始测试
 function startTest(version) {
@@ -349,6 +408,7 @@ function restartTest() {
 
 // 返回首页
 function backToHome() {
-    document.getElementById('result-page').classList.remove('active');
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('start-page').classList.add('active');
+    window.location.hash = '';
 }
