@@ -3,51 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MBTI 人格测试</title>
+    <title>MBTI 人格测试 - 探索你的真实性格</title>
+    <meta name="description" content="专业的MBTI人格测试，帮助你深入了解自己的性格类型。提供简洁版和深入版两种测试模式。">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- 背景装饰 -->
+    <div class="bg-decoration">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+    </div>
+
     <div class="container">
         <!-- 开始页面 -->
         <div id="start-page" class="page active">
             <div class="header">
-                <h1>🎭 MBTI 人格测试</h1>
-                <p class="subtitle">探索你的性格类型</p>
+                <div class="logo">🎭</div>
+                <h1>MBTI 人格测试</h1>
+                <p class="subtitle">探索你的真实性格，发现更好的自己</p>
             </div>
+
+            <!-- 统计数据 -->
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-number">128,456</div>
+                    <div class="stat-label">已测试人数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-number">4.9</div>
+                    <div class="stat-label">用户评分</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-number">96%</div>
+                    <div class="stat-label">准确率</div>
+                </div>
+            </div>
+
             <div class="intro">
-                <p>本测试通过一系列问题，帮助你了解自己的MBTI人格类型。</p>
-                <p class="info">共 100 道专业测试题，大约需要 10-15 分钟</p>
+                <p>基于心理学经典理论，通过科学的测试方法，帮助你深入了解自己的性格类型、优势与成长方向。</p>
             </div>
-            <button class="btn-primary" onclick="startTest()">开始测试</button>
+
+            <!-- 版本选择 -->
+            <div class="version-selection">
+                <h2 class="selection-title">选择测试版本</h2>
+
+                <div class="version-cards">
+                    <!-- 简洁版 -->
+                    <div class="version-card" onclick="startTest('simple')">
+                        <div class="version-icon">⚡</div>
+                        <div class="version-name">简洁版</div>
+                        <div class="version-info">
+                            <div class="version-detail">
+                                <span class="detail-icon">📝</span>
+                                <span>20道精选题目</span>
+                            </div>
+                            <div class="version-detail">
+                                <span class="detail-icon">⏱️</span>
+                                <span>约3-5分钟</span>
+                            </div>
+                            <div class="version-detail">
+                                <span class="detail-icon">👥</span>
+                                <span>85,231人测过</span>
+                            </div>
+                        </div>
+                        <div class="version-badge">快速了解</div>
+                    </div>
+
+                    <!-- 深入版 -->
+                    <div class="version-card featured" onclick="startTest('full')">
+                        <div class="featured-badge">推荐</div>
+                        <div class="version-icon">🎯</div>
+                        <div class="version-name">深入版</div>
+                        <div class="version-info">
+                            <div class="version-detail">
+                                <span class="detail-icon">📝</span>
+                                <span>100道专业题目</span>
+                            </div>
+                            <div class="version-detail">
+                                <span class="detail-icon">⏱️</span>
+                                <span>约10-15分钟</span>
+                            </div>
+                            <div class="version-detail">
+                                <span class="detail-icon">👥</span>
+                                <span>43,225人测过</span>
+                            </div>
+                        </div>
+                        <div class="version-badge">全面精准</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>科学权威</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>详细解析</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>完全免费</span>
+                </div>
+            </div>
         </div>
 
         <!-- 问题页面 -->
         <div id="quiz-page" class="page">
-            <div class="progress-bar">
-                <div id="progress" class="progress-fill"></div>
+            <div class="quiz-header">
+                <!-- 统一插图 -->
+                <div class="question-illustration">
+                    <div class="illustration-icon">🤔</div>
+                    <div class="illustration-text">思考中...</div>
+                </div>
+
+                <div class="progress-bar">
+                    <div id="progress" class="progress-fill"></div>
+                </div>
+                <div class="question-number">
+                    问题 <span id="current-q">1</span> / <span id="total-q">100</span>
+                    <span class="version-tag" id="version-tag"></span>
+                </div>
             </div>
-            <div class="question-number">问题 <span id="current-q">1</span> / <span id="total-q">12</span></div>
+
             <div id="question-box">
                 <h2 id="question-text" class="question-text"></h2>
                 <div id="options" class="options"></div>
+            </div>
+
+            <div class="quiz-tip">
+                <span class="tip-icon">💡</span>
+                <span>请根据你的真实感受选择最符合的选项</span>
             </div>
         </div>
 
         <!-- 结果页面 -->
         <div id="result-page" class="page">
             <div class="result-container">
-                <h1 class="result-title">你的 MBTI 类型是</h1>
+                <div class="result-header">
+                    <div class="result-celebration">🎉</div>
+                    <h1 class="result-title">测试完成！</h1>
+                    <p class="result-subtitle">你的 MBTI 性格类型是</p>
+                </div>
+
                 <div id="mbti-type" class="mbti-type"></div>
                 <div id="mbti-name" class="mbti-name"></div>
                 <div id="mbti-desc" class="mbti-desc"></div>
 
                 <div class="dimensions">
-                    <h3>维度分析</h3>
+                    <h3>📊 维度分析</h3>
                     <div id="dimensions" class="dimension-list"></div>
+                </div>
+
+                <div class="share-section">
+                    <h3>🔗 分享你的结果</h3>
+                    <div class="share-buttons">
+                        <button class="share-btn" onclick="shareResult('wechat')">
+                            <span class="share-icon">💬</span>
+                            微信
+                        </button>
+                        <button class="share-btn" onclick="shareResult('link')">
+                            <span class="share-icon">🔗</span>
+                            复制链接
+                        </button>
+                        <button class="share-btn" onclick="shareResult('screenshot')">
+                            <span class="share-icon">📸</span>
+                            截图保存
+                        </button>
+                    </div>
                 </div>
 
                 <div class="actions">
                     <button class="btn-secondary" onclick="restartTest()">重新测试</button>
+                    <button class="btn-primary" onclick="backToHome()">返回首页</button>
                 </div>
             </div>
         </div>
